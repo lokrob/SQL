@@ -3,4 +3,10 @@ Find all companies that offer "above average" paid time off days, maternity leav
 Make a ranking of industries by their revenue from best to worst
 How many companies have above average, average, and below average employee tenure?
 Employee counts to be recategorized from small, medium, and large?
-Find tech jobs that meets these requirements of 1. Having health insurance and 2. PTO of 20 days or more, 
+
+Find tech jobs that meets these requirements of 1. Having health insurance and 2. PTO of 20 days or more.
+  SELECT company_name, industry, healthcare_benefits, paid_time_off_days
+  FROM fortune_companies
+  WHERE industry = "Technology"
+  AND healthcare_benefits = 1
+  AND paid_time_off_days >=20;
