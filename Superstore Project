@@ -1,60 +1,5 @@
 #For this project, I used SQL to query the Superstore database from the prompt below to get information about items sold at the store and their prices. 
 
--- 1. Write a SQL query that orders the items by price
-
-SELECT item_name, price
-FROM superstore
-ORDER BY price;
-
--- What this code does is retrieve all items ordered by price in ascending order.
--- Helps with price comparisons and can be useful for quickly identifying low cost or high cost products.
-
-
--- 2. Write your own SQL query that will show a statistic about the item prices, like a sum, average, minimum, maximum, or count.
-
-SELECT 
-SUM(price) AS "Sum of Price", 
-AVG(price) AS "Average Price", 
-MIN(price) AS "Minimum Price", 
-MAX(price) AS "Maximum Price", 
-COUNT(price) AS "Count of Price"
-FROM superstore;
-
--- What this code does is compute descriptive statistics for all item prices across the store.
--- Includes summation, average, minimum, maximum, and count to provide info of the overall pricing distributions in the data set.
--- Used AS commands to rename the columns to be more readable and presentable.
-
-
--- 3. Write your own SQL query that will show a statistic about the price for items in the category of "Kitchen Supplies".
-
-SELECT 
-SUM(price) AS "Total Price",
-AVG(price) AS "Average Price",
-MIN(price) AS "Minimum Price",
-MAX(price) AS "Maximum Price",
-COUNT(price) AS "Counted"
-FROM superstore
-WHERE category = 'Kitchen Supplies';
-
--- What this code does is compute the same statistics as #3 but more narrowed down to the "Kitchen Supplies" category by using the WHERE statement.
-
-
-
--- 4. How many air purifiers are in stock?
-
-SELECT 
-item_name AS "Item Name", 
-stock_quantity AS "Stock Quantity"
-FROM superstore
-WHERE item_name = 'Air Purifier';
-
--- What this code does is find the stock availibility for air purifiers and helps with inventory management.
--- Used Select statement to only focus on showing the name of the item and remaining stock.
--- Used Where statement to further filtering it down to show only results for Air Purifiers. 
-
---------------------------------------------------------------------------------------
-DATABASE Used
-
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
     item_name TEXT,
@@ -82,4 +27,53 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
--- © Copyright 2025 Break Into Tech  --
+#1. Write a SQL query that orders the items by price
+
+SELECT item_name, price
+FROM superstore
+ORDER BY price;
+
+-- What this code does is retrieve all items ordered by price in ascending order.
+-- Helps with price comparisons and can be useful for quickly identifying low cost or high cost products.
+
+#2. Write your own SQL query that will show a statistic about the item prices, like a sum, average, minimum, maximum, or count.
+
+SELECT 
+SUM(price) AS "Sum of Price", 
+AVG(price) AS "Average Price", 
+MIN(price) AS "Minimum Price", 
+MAX(price) AS "Maximum Price", 
+COUNT(price) AS "Count of Price"
+FROM superstore;
+
+-- What this code does is compute descriptive statistics for all item prices across the store.
+-- Includes summation, average, minimum, maximum, and count to provide info of the overall pricing distributions in the data set.
+-- Used AS commands to rename the columns to be more readable and presentable.
+
+
+#3. Write your own SQL query that will show a statistic about the price for items in the category of "Kitchen Supplies".
+
+SELECT 
+SUM(price) AS "Total Price",
+AVG(price) AS "Average Price",
+MIN(price) AS "Minimum Price",
+MAX(price) AS "Maximum Price",
+COUNT(price) AS "Counted"
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
+-- What this code does is compute the same statistics as #3 but more narrowed down to the "Kitchen Supplies" category by using the WHERE statement.
+
+#4. How many air purifiers are in stock?
+
+SELECT 
+item_name AS "Item Name", 
+stock_quantity AS "Stock Quantity"
+FROM superstore
+WHERE item_name = 'Air Purifier';
+
+-- What this code does is find the stock availibility for air purifiers and helps with inventory management.
+-- Used Select statement to only focus on showing the name of the item and remaining stock.
+-- Used Where statement to further filtering it down to show only results for Air Purifiers. 
+
+
