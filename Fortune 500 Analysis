@@ -60,7 +60,7 @@ VALUES
 
 #Analysis
 
-#Find companies that have tech jobs that meets these requirements of:
+#1.Find companies that have tech jobs that meets these requirements of:
     1. Having health insurance. 
     2. PTO of 20 days or more.
 
@@ -74,6 +74,8 @@ AND healthcare_benefits = 1
 AND paid_time_off_days >=20
 ;
 
+--Used Logical Operators of AND to further filter out data to meet the requirements of company tech jobs that have healthcare benifits and greater than or equal to 20 paid time off days.
+
 #Find the sum of employees in each industry that has over a million people.
 
 SELECT industry,
@@ -82,6 +84,8 @@ FROM fortune_companies
 GROUP BY industry
 HAVING Total_Employees_At_Each_Industry > 1000000
 ;
+
+--Used the Having Clause to filter aggregated data from the sum of employees on each industry to find which industries have over a million employees.
 
 #Assign all Fortune 500 companies as "Generous Time Off", "Acceptable Time Off", or "Doesn't Meet Time Off Standard" based on paid time off days offered.
 
@@ -94,5 +98,7 @@ END AS PTO_Standards
 FROM fortune_companies
 ORDER BY paid_time_off_days DESC
 ;
+
+--Used the Case Statement on paid_time_off_days column that is evaluated top-down where it must meet the conditions of >=21 days as "Generous", >=14 days as "Acceptable", and rest as "Doesn't Meet Standard"
 
 
