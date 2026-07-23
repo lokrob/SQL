@@ -1,0 +1,59 @@
+Climate Conference Project
+Database: https://www.db-fiddle.com/f/pxMci1sLL945KHKYvpe9W6/1
+
+1. Who are the VIPs giving and receiving feedback from?
+
+SELECT giver.member_id Person_Giving_Feedback_ID
+, giver.last_name Giver_Last_Name
+, giver.first_name Giver_First_name
+, receiver.member_id Person_Receiving_Feedback_ID
+, receiver.last_name Receiver_Last_Name
+, receiver.first_name Receiver_First_Name
+FROM vips giver
+JOIN vips receiver
+ON giver.provides_feedback_to = receiver.member_id
+;
+--Used a self join to find VIPs that are giving and receiving feedback from.
+
+2. 
+
+3. Which hotel is each VIP staying in?
+
+SELECT vips.last_name
+, vips.first_name
+, hotels.hotel_name
+FROM vips
+LEFT JOIN reservations
+ON vips.member_id = reservations.member_id
+LEFT JOIN hotels
+ON reservations.hotel = hotels.hotel_id
+ORDER BY hotels.hotel_name
+;
+--Used multiple left joins to pull up all data of where each VIP is staying at which hotel.
+
+4. List the VIPs who RSVP’d yes to both the welcome party and dinner reservation.
+
+SELECT vips.last_name
+, vips.first_name
+, reservations.welcome_rsvp
+, reservations.dinner_rsvp
+FROM vips
+JOIN reservations
+ON vips.member_id = reservations.member_id
+WHERE reservations.welcome_rsvp = 1 
+AND reservations.dinner_rsvp = 1
+ORDER BY vips.last_name
+;
+--Used an inner join to find VIPs that meet the specific condition of RSVPing to both Welcome Party and Dinner.
+
+5. What are all the events that will be shown in this conference and by who is presenting them?
+
+SELECT last_name
+, first_name
+, event_name
+, event_type
+FROM vips
+RIGHT JOIN events 
+ON vips.event = events.event_id
+;
+--Used a right join to mainly emphasize on the events info to find out more on who is presenting to what workshops there are.
