@@ -1,0 +1,51 @@
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL 
+)
+
+--1. Who are the top 10 artists in Spotify?
+
+SELECT artist_name,
+       track_name,
+       popularity
+  FROM Spotifydata
+ ORDER BY popularity DESC
+ LIMIT 10;
+ 
+--2. How many songs do each artists have on the top 50 dataset?
+
+SELECT COUNT(artist_name),
+       artist_name
+  FROM Spotifydata
+ GROUP BY artist_name
+ ORDER BY COUNT(artist_name) DESC;
+ 
+-- 3. Calculate the average popularity for the artists in the Spotify data table. Then, for every artist with an average popularity of 90 or above, show their name, their average popularity, and label them as a “Top Star”.
+
+WITH popularity_average_CTE AS (
+    SELECT artist_name,
+           AVG(popularity) AS average_popularity
+      FROM SpotifyData
+     GROUP BY artist_name
+)
+SELECT artist_name,
+       average_popularity,
+       'Top Star' AS tag
+  FROM popularity_average_CTE
+ WHERE average_popularity >= 90;
