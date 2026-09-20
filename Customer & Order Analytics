@@ -6,13 +6,16 @@ This project uses a SQLiteStudio database containing multiple related tables. Th
     WHERE length(orderID) = 6
     AND orderID <> 'Order ID'
     ;
-    
+    -- Counts distinct January order IDs while filtering out invalid IDs and the column header.
+
 --2. How many of those orders were for an iPhone?
     SELECT count(distinct orderID)
     FROM JanSales
     WHERE length(orderID) = 6
     AND orderID <> 'Order ID'
-    AND Product = 'iPhone';
+    AND Product = 'iPhone'
+    ;
+    -- Counts unique January orders containing an iPhone, excluding invalid order IDs and the column header.
     
 --3. Select the customer account numbers for all the orders that were placed in February.
     SELECT distinct acctnum
@@ -22,12 +25,14 @@ This project uses a SQLiteStudio database containing multiple related tables. Th
     WHERE length(orderID) = 6
     AND orderID <> 'Order ID'
     ;
-    
+    -- Joins the customers and February sales tables using order IDs to retrieve unique customer account numbers associated with February orders.    
+
 --4. Which product was the cheapest one sold in January, and what was the price?
     SELECT Product
     , MIN(price)
     FROM JanSales
     ;
+    -- Uses the MIN() function to identify the lowest product price recorded in January.
 
 --5. What is the total revenue for each product sold in January?
     SELECT Product
@@ -35,6 +40,7 @@ This project uses a SQLiteStudio database containing multiple related tables. Th
     FROM JanSales
     GROUP BY Product
     ;
+    -- Groups January sales by product and calculates total revenue using quantity multiplied by price.
 
 --6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
     SELECT Product
@@ -45,6 +51,7 @@ This project uses a SQLiteStudio database containing multiple related tables. Th
     WHERE location = '548 Lincoln St, Seattle, WA 98101'
     GROUP BY Product
     ;
+    -- Filters February sales by the specified location and calculates the total quantity sold and revenue for each product.
 
 --7. How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
     SELECT count(distinct customers.acctnum)
@@ -56,4 +63,4 @@ This project uses a SQLiteStudio database containing multiple related tables. Th
     AND length(orderid) = 6
     AND orderid <> 'Order ID'
     ;
- 
+    -- Joins February sales with customer records to count unique customers meeting the order quantity criteria and calculate the average spending value. 
