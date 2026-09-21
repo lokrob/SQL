@@ -24,28 +24,34 @@ time_signature integer NOT NULL
 SELECT artist_name,
        track_name,
        popularity
-  FROM Spotifydata
- ORDER BY popularity DESC
- LIMIT 10;
+FROM Spotifydata
+ORDER BY popularity DESC
+LIMIT 10
+;
+--Sorts tracks by popularity in descending order and returns the top 10 results.
  
 --2. How many songs do each artists have on the top 50 dataset?
 
 SELECT COUNT(artist_name),
        artist_name
-  FROM Spotifydata
- GROUP BY artist_name
- ORDER BY COUNT(artist_name) DESC;
+FROM Spotifydata
+GROUP BY artist_name
+ORDER BY COUNT(artist_name) DESC
+;
+-- Counts the number of tracks for each artist and sorts them from most to fewest songs.
  
 -- 3. Calculate the average popularity for the artists in the Spotify data table. Then, for every artist with an average popularity of 90 or above, show their name, their average popularity, and label them as a “Top Star”.
 
 WITH popularity_average_CTE AS (
-    SELECT artist_name,
-           AVG(popularity) AS average_popularity
-      FROM SpotifyData
-     GROUP BY artist_name
+SELECT artist_name,
+AVG(popularity) AS average_popularity
+FROM SpotifyData
+GROUP BY artist_name
 )
 SELECT artist_name,
        average_popularity,
        'Top Star' AS tag
-  FROM popularity_average_CTE
- WHERE average_popularity >= 90;
+FROM popularity_average_CTE
+WHERE average_popularity >= 90
+;
+-- Uses a CTE to calculate each artist's average popularity, then filters for artists scoring 90 or higher and labels them as "Top Star."
