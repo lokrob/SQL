@@ -15,7 +15,15 @@ ON giver.provides_feedback_to = receiver.member_id
 ;
 --Used a self join to find VIPs that are giving and receiving feedback from.
 
-2. 
+2. Which members have been here above average in tenure?
+
+SELECT last_name, first_name, member_since 
+FROM vips
+WHERE member_since <= 
+	( SELECT AVG(member_since) 
+	FROM vips )
+;
+--Used a subquery to find which conference members have been here longer than the average membership start date.
 
 3. Which hotel is each VIP staying in?
 
